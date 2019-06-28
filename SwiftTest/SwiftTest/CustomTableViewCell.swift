@@ -44,7 +44,7 @@ class CustomTableViewCell: UITableViewCell {
         }
         set {
             self.newModel = newValue
-            let str:String = self.newModel.images?.first as! String
+            let str:String = self.newModel.images!.first as! String
             
             let  url = URL(string:str)
             

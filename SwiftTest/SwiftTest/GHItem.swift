@@ -10,7 +10,7 @@ import UIKit
 class GHItem: HandyJSON {
     var title:  String?
     var ga_prefix: String?
-    var images: Array<String>?
+    var images: Array<String>!
     var multipic: String?
     var type: Int?
     var id: Int?

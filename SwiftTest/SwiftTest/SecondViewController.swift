@@ -273,12 +273,15 @@ class SecondViewController: UIViewController,UITableViewDelegate,UITableViewData
         print("weibo index is \(foundIndex)");
         
         }
-        testZhihuDily()
         createTableView()
+        testZhihuDily()
+        
         // Do any additional setup after loading the view.
     }
     func testZhihuDily()  {
+       LoadingTool.shared.showProgressMessage(msg: "emmmm......", inView: self.view)
         NetWorkRequest(.easyRequest, complection: { (resut) -> (Void) in
+            LoadingTool.shared.hudHidden()
             if let daliyItems = [GHItem].deserialize(from: resut, designatedPath: "stories"){
                 daliyItems.forEach({(item) in
                     self.array.append(item!)

@@ -12,5 +12,7 @@ pod 'HandyJSON', '~> 5.0.0-beta.1'
 pod 'SDCycleScrollView', '~> 1.80'
 pod 'SnapKit', '~> 5.0.0'
 pod 'Kingfisher', '~> 5.4.0'
+pod 'MBProgressHUD'
+pod 'IQKeyboardManager', '~> 6.3.0'
 
 end

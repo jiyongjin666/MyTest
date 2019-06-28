@@ -132,6 +132,11 @@ class ViewController: UIViewController {
         let sevc = SecondViewController.init()
         self.navigationController?.pushViewController(sevc, animated: true)
     }
+    @objc func exitAction()  {
+
+        self.view.window?.rootViewController = LoginViewController()
+        deletePasswd()
+    }
     func createBUtton() {
         let button = UIButton.init(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
         button.center = self.view.center
@@ -140,6 +145,13 @@ class ViewController: UIViewController {
         button.backgroundColor = UIColor.red
         //button.addTarget(self, action: #selector(nextAction), for: UIControl.Event.touchUpInside)
         button.addTarget(self, action: #selector(buttonTap1(button:)), for: UIControl.Event.touchUpInside)
+        let exitButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 100, height: 50))
+        exitButton.center = CGPoint.init(x: self.view.center.x, y: 100)
+        self.view.addSubview(exitButton)
+        exitButton.setTitle("退出登录", for: .normal)
+        exitButton.backgroundColor = UIColor.gray
+        exitButton.addTarget(self, action: #selector(exitAction), for: .touchUpInside)
+        
     }
    
 }

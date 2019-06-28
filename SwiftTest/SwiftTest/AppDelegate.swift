@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import IQKeyboardManager
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,psVCDelegate {
     var guidevc = PSGuideViewController()
@@ -24,9 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate,psVCDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
-        let vc = ViewController.init()
-        let  main = UINavigationController.init(rootViewController: vc)
-        self.window?.rootViewController = main
+        let vc = LoginViewController.init()
+        let mainVC = ViewController.init()
+        let  main = UINavigationController.init(rootViewController: mainVC)
+        let passwd:String = createAcount() as! String
+        if passwd.isEmpty == true {
+             self.window?.rootViewController = vc
+        }else {
+            self.window?.rootViewController = main
+        }
+       
         self.window?.makeKeyAndVisible()
         if UserDefaults.isFirstLauchofNewVersion() {
             print("第一次启动")
@@ -43,11 +50,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate,psVCDelegate {
            
         }
         
-        
+        configKeyBaordManger()
+        if#available(iOS 11.0, *) {
+            UIScrollView.appearance().contentInsetAdjustmentBehavior = .never
+        }
         // Override point for customization after application launch.
         return true
     }
-    
+    func configKeyBaordManger() {
+        let keyBoardManager = IQKeyboardManager.shared()
+        keyBoardManager.isEnabled = true
+        keyBoardManager.toolbarDoneBarButtonItemText = "完成"
+        keyBoardManager.isEnableAutoToolbar = true
+        keyBoardManager.toolbarManageBehaviour = IQAutoToolbarManageBehaviour.bySubviews
+    }
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
